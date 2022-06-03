@@ -4,7 +4,7 @@
 
 const Hero = require('./game-models/Hero');
 const Enemy = require('./game-models/Enemy');
-// const Boomerang = require('./game-models/Boomerang');
+const Boomerang = require('./game-models/Boomerang');// раскомментировал
 const View = require('./View');
 
 // Основной класс игры.
