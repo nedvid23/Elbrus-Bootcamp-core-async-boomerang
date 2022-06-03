@@ -1,14 +1,17 @@
 // Враг.
 
 class Enemy {
-  constructor(trackLength) {
+  constructor(obj) {
     this.generateSkin();
-    this.position = trackLength;
+    this.position = obj-1;
+    this.flag = true
+    
   }
 
   generateSkin() {
     const skins = ['👾', '💀', '👹', '👻', '👽', '👿', '💩', '🤡', '🤺', '🧛', '🧟', '🎃'];
     this.skin = skins[Math.floor(Math.random() * skins.length)];
+    return this.skin
   }
 
   moveLeft() {
@@ -17,8 +20,9 @@ class Enemy {
   }
 
   die() {
-    this.position = '?';
+    this.position = -1;
     console.log('Enemy is dead!');
+    this.flag = false
   }
 }
 
