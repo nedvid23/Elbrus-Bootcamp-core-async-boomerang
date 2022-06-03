@@ -15,8 +15,9 @@ class Game {
   constructor({ trackLength }) {
     this.trackLength = trackLength;
     this.hero = new Hero(); // Герою можно аргументом передать бумеранг.
-    this.enemy = new Enemy();
+    this.enemy = new Enemy(trackLength);
     this.view = new View();
+    this.boomerang = new Boomerang();
     this.track = [];
     this.regenerateTrack();
   }
@@ -26,6 +27,12 @@ class Game {
     // в единую структуру данных
     this.track = (new Array(this.trackLength)).fill(' ');
     this.track[this.hero.position] = this.hero.skin;
+    // this.boomerang.moveRight();
+    // this.track[this.boomerang.position] = this.boomerang.skin;
+    this.enemy.moveLeft();
+    this.track[this.enemy.position] = this.enemy.skin;
+    
+    
   }
 
   check() {
@@ -59,9 +66,7 @@ class Game {
       this.check();
       this.regenerateTrack();
       this.view.render(this.track);
-
-      console.log(`Позиция героя: ${this.hero.position}`);
-    }, 250);
+    }, 200);
   }
 }
 
