@@ -39,8 +39,6 @@ class Game {
     this.track[this.boomerang.position] = this.boomerang.skin;
     this.enemy.moveLeft();
     this.track[this.enemy.position] = this.enemy.skin;
-    
-    
   }
   
   check() {
@@ -67,6 +65,9 @@ class Game {
         if (key.name === 'd') this.hero.moveRight();
         if (key.name === 'a') this.hero.moveLeft();
 
+        this.check();
+        if (this.hero.isDead) this.renderSingleShot();
+
         if (key.ctrl && key.name === 'c') {
           process.exit();
         }
@@ -77,10 +78,15 @@ class Game {
 
   renderNewShot() {
     setInterval(() => {
-      this.check();
-      this.regenerateTrack();
-      this.view.render(this.track);
-    }, 100);
+      this.renderSingleShot();
+    },100);
+
+  }
+
+  renderSingleShot() {
+    this.check();
+    this.regenerateTrack();
+    this.view.render(this.track);
   }
 }
 
