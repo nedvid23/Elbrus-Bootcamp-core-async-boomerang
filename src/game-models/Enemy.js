@@ -4,6 +4,7 @@ class Enemy {
   constructor(obj) {
     this.generateSkin();
     this.position = obj-1;
+    this.flag = true
     
   }
 
@@ -19,8 +20,9 @@ class Enemy {
   }
 
   die() {
-    this.position = '?';
+    this.position = -1;
     console.log('Enemy is dead!');
+    this.flag = false
   }
 }
 
