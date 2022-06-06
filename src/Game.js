@@ -34,21 +34,17 @@ class Game {
       this.boomerang.moveLeft();
       if (this.boomerang.position === this.hero.position) {
         this.boomerang.skin = '';
-      }      
+      }
     }
     this.track[this.boomerang.position] = this.boomerang.skin;
     this.enemy.moveLeft();
     this.track[this.enemy.position] = this.enemy.skin;
-    
-    
   }
-  
+
   check() {
-    
     if (this.enemy.position === this.boomerang.position) {
       this.enemy.die();
-      
-      }
+    }
 
     if (this.hero.position === this.enemy.position) {
       this.hero.die();
@@ -67,6 +63,9 @@ class Game {
         if (key.name === 'd') this.hero.moveRight();
         if (key.name === 'a') this.hero.moveLeft();
 
+        this.check();
+        if (this.hero.isDead) this.renderSingleShot();
+
         if (key.ctrl && key.name === 'c') {
           process.exit();
         }
@@ -77,10 +76,14 @@ class Game {
 
   renderNewShot() {
     setInterval(() => {
-      this.check();
-      this.regenerateTrack();
-      this.view.render(this.track);
+      this.renderSingleShot();
     }, 100);
+  }
+
+  renderSingleShot() {
+    this.check();
+    this.regenerateTrack();
+    this.view.render(this.track);
   }
 }
 

@@ -1,9 +1,10 @@
 // Наш герой.
 
 class Hero {
-  constructor( position = 0 ) { // убрал деструктуризацию
+  constructor(position = 0) { // убрал деструктуризацию
     this.skin = '🤠'; // можете использовать любые emoji '💃'
     this.position = position;
+    this.isDead = false;
   }
 
   moveLeft() {
@@ -23,6 +24,7 @@ class Hero {
 
   die() {
     this.skin = '💀';
+    this.isDead = true;
     console.log('YOU ARE DEAD!💀');
     process.exit();
   }

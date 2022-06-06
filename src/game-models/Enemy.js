@@ -3,15 +3,14 @@
 class Enemy {
   constructor(obj) {
     this.generateSkin();
-    this.position = obj-1;
-    this.flag = true
-    
+    this.position = obj - 1;
+    this.flag = true;
   }
 
   generateSkin() {
     const skins = ['👾', '💀', '👹', '👻', '👽', '👿', '💩', '🤡', '🤺', '🧛', '🧟', '🎃'];
     this.skin = skins[Math.floor(Math.random() * skins.length)];
-    return this.skin
+    return this.skin;
   }
 
   moveLeft() {
@@ -21,8 +20,9 @@ class Enemy {
 
   die() {
     this.position = -1;
+    // eslint-disable-next-line no-console
     console.log('Enemy is dead!');
-    this.flag = false
+    this.flag = false;
   }
 }
 
