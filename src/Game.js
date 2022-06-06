@@ -78,6 +78,7 @@ class Game {
     setInterval(() => {
       this.renderSingleShot();
     }, 100);
+
   }
 
   isPossibleMove(track, currentPosition, direction) {
@@ -88,6 +89,7 @@ class Game {
     if (direction === 'left' && currentPosition - 1 < maxLeftPosition) return false;
 
     return true;
+
   }
 
   renderSingleShot() {
