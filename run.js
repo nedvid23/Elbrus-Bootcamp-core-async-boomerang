@@ -7,6 +7,5 @@ const game = new Game({
   trackLength: 50,
 });
 
-
 // Запуск игры.
 game.play();

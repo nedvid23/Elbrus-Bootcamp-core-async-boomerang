@@ -34,19 +34,17 @@ class Game {
       this.boomerang.moveLeft();
       if (this.boomerang.position === this.hero.position) {
         this.boomerang.skin = '';
-      }      
+      }
     }
     this.track[this.boomerang.position] = this.boomerang.skin;
     this.enemy.moveLeft();
     this.track[this.enemy.position] = this.enemy.skin;
   }
-  
+
   check() {
-    
     if (this.enemy.position === this.boomerang.position) {
       this.enemy.die();
-      
-      }
+    }
 
     if (this.hero.position === this.enemy.position) {
       this.hero.die();
@@ -79,8 +77,7 @@ class Game {
   renderNewShot() {
     setInterval(() => {
       this.renderSingleShot();
-    },100);
-
+    }, 100);
   }
 
   renderSingleShot() {
