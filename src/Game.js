@@ -34,19 +34,17 @@ class Game {
       this.boomerang.moveLeft();
       if (this.boomerang.position === this.hero.position) {
         this.boomerang.skin = '';
-      }      
+      }
     }
     this.track[this.boomerang.position] = this.boomerang.skin;
     this.enemy.moveLeft();
     this.track[this.enemy.position] = this.enemy.skin;
   }
-  
+
   check() {
-    
     if (this.enemy.position === this.boomerang.position) {
       this.enemy.die();
-      
-      }
+    }
 
     if (this.hero.position === this.enemy.position) {
       this.hero.die();
@@ -62,8 +60,8 @@ class Game {
     keypress(process.stdin);
     process.stdin.on('keypress', (ch, key) => {
       if (key) {
-        if (key.name === 'd') this.hero.moveRight();
-        if (key.name === 'a') this.hero.moveLeft();
+        if (key.name === 'd' && this.isPossibleMove(this.track, this.hero.position, 'right')) this.hero.moveRight();
+        if (key.name === 'a' && this.isPossibleMove(this.track, this.hero.position, 'left')) this.hero.moveLeft();
 
         this.check();
         if (this.hero.isDead) this.renderSingleShot();
@@ -79,8 +77,17 @@ class Game {
   renderNewShot() {
     setInterval(() => {
       this.renderSingleShot();
-    },100);
+    }, 100);
+  }
 
+  isPossibleMove(track, currentPosition, direction) {
+    const maxLeftPosition = 0;
+    const maxRightPosition = track.length;
+
+    if (direction === 'right' && currentPosition + 1 > maxRightPosition) return false;
+    if (direction === 'left' && currentPosition - 1 < maxLeftPosition) return false;
+
+    return true;
   }
 
   renderSingleShot() {
